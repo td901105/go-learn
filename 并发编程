@@ -1,0 +1,5 @@
+java      go
+
+lock      sync.Mutex        
+
+join      sync.WaitGroup    (线程之间通信)
