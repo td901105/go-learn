@@ -21,3 +21,19 @@ go.mod:定义依赖库的 path 和版本
 go.sum: 包含特定依赖包的版本内容的散列哈希值。
 一般我们项目都是单 module 的形式，项目根目录下包含 go.mod 和 go.sum 文件，子文件夹定义 package，或者主文件夹也是一个 package。
 但是一个项目也可以包含多个 module，只不过这种方式不常用而已。
+
+通常情况下，你不需要手动编辑 go.mod，通过 go get，go mod 等命令来完成依赖管理的同时，go.mod 也会自动更新。
+
+go get -u 将会升级到最新的次要版本或者修订版本(x.y.z, z是修订版本号， y是次要版本号)
+go get -u=patch 将会升级到最新的修订版本
+go get package@version 将会升级到指定的版本号version
+
+以下是 go module 相关的一些命令:
+
+go mod init: 初始化 go module
+go mod download: 下载 go.mod 中的依赖到本地 Cache ($GOPATH/pkg/mod 下)
+go mod vendor: 将项目依赖拷贝到 vendor 下
+go mod tidy: 相当于 dep ensure，增加缺失的依赖(module)，丢掉没用的依赖(module)
+go mod verify: 校验依赖
+go mod edit: 编辑依赖，通过命令行手动升级或获取依赖
+go list -m all: 列出当前项目(main module)的构建列表
