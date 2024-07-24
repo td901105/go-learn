@@ -1,0 +1,19 @@
+go 中没有 java 中的类的概念，只能定义 struct，然后接收器（receiver）函数定义方法操作结构体。
+
+type Person struct {
+	Name string
+	Age  int
+}
+
+func (p *Person) Eat(food string) {
+	fmt.Println("eat", food)
+}
+
+go 中接口可以通过 interface 关键字定义，结构体实现接口的方式是 只需要实现 interface 中定义的方法即可
+type base interface { //类似基类定义
+    virtualfunc() int //类似虚函数抽象定义
+}
+
+func somefunc(b base) { //作为某个函数的形参
+    b.virtualfunc()    // 从语义上说，只要传入的参数实现了 virtualfunc 方法，即视为实现了 interface
+}
